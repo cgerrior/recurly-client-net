@@ -35,6 +35,17 @@ namespace Recurly.Configuration
             get { return (string)base["privateKey"]; }
             set { base["privateKey"] = value; }
         }
+		
+        /// <summary>
+        /// Skip Authorization Header - if "True", don't attempt to authorize the credit card being provided
+        /// </summary>
+        [ConfigurationProperty("skipAuth", IsRequired = false)]
+        //[StringValidator(MinLength=32, MaxLength=32)]
+        public string SkipAuth
+        {
+            get { return (string)base["skipAuth"]; }
+            set { base["skipAuth"] = value; }
+        }
 
         /// <summary>
         /// Recurly Subdomain

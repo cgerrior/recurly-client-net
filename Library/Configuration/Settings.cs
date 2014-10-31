@@ -13,6 +13,7 @@ namespace Recurly.Configuration
         public string ApiKey { get; private set; }
         public string PrivateKey { get; private set; }
         public string Subdomain { get; private set; }
+		public string SkipAuth {get; private set; }
         public int PageSize { get; private set; }
 
         protected const string RecurlyServerUri = "https://{0}.recurly.com/v2{1}";
@@ -33,6 +34,16 @@ namespace Recurly.Configuration
                 if (!ApiKey.IsNullOrEmpty())
                     return "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(ApiKey));
                 return string.Empty;
+            }
+        }
+		
+        public string RecurlySkipAuthorizationHeaderValue
+        {
+            get
+            {
+                if (!SkipAuth.IsNullOrEmpty())
+                    return "True";
+                return "False";
             }
         }
 
@@ -57,14 +68,16 @@ namespace Recurly.Configuration
             Subdomain = Section.Current.Subdomain;
             PrivateKey = Section.Current.PrivateKey;
             PageSize = Section.Current.PageSize;
+			SkipAuth = Section.Current.SkipAuth;
         }
 
-        internal Settings(string apiKey, string subdomain, string privateKey, int pageSize)
+        internal Settings(string apiKey, string subdomain, string privateKey, string skipAuth, int pageSize)
         {
             ApiKey = apiKey;
             Subdomain = subdomain;
             PrivateKey = privateKey;
             PageSize = pageSize;
+			SkipAuth = skipAuth;
         }
     }
 }

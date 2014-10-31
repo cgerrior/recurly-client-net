@@ -52,7 +52,7 @@ namespace Recurly.Test
         public void AccountList_supports_paging()
         {
             var testSettings = SettingsFixture.TestSettings;
-            var moddedSettings = new Settings(testSettings.ApiKey, testSettings.Subdomain,
+            var moddedSettings = new Settings(testSettings.ApiKey, testSettings.SkipAuth, testSettings.Subdomain,
                 testSettings.PrivateKey, 5);
             Client.Instance.ApplySettings(moddedSettings);
 
